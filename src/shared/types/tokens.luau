@@ -36,25 +36,31 @@ Possible KalToken types:
 "basetoken" (Base Token)
 
 ]]
-local function createToken(value: string | number, typename: string): KalToken
-    if typename == "nutoken" then
-        return { val = KalValue.new(value), typename = "nutoken" }
-    elseif typename == "sttoken" then
-        return { val = KalValue.new(value), typename = "sttoken" }
-    elseif typename == "sytoken" then
-        return { val = KalValue.new(value), typename = "sytoken" }
-    elseif typename == "qutoken" then
-        return { val = nil, typename = "qutoken" }
-    elseif typename == "lbtoken" then
-        return { val = nil, typename = "lbtoken" }
-    elseif typename == "rbtoken" then
-        return { val = nil, typename = "rbtoken" }
-    elseif typename == "nltoken" then
-        return { val = nil, typename = "nltoken" }
-    elseif typename == "basetoken" then
-        return { val = nil, typename = "basetoken" }
+local function createToken(value: string | number | nil, typename: string): KalToken
+    if value then
+        if typename == "nutoken" then
+            return { val = KalValue.new(value), typename = "nutoken" }
+        elseif typename == "sttoken" then
+            return { val = KalValue.new(value), typename = "sttoken" }
+        elseif typename == "sytoken" then
+            return { val = KalValue.new(value), typename = "sytoken" }
+        else
+            error("Invalid token type: " .. typename)
+        end
     else
-        error("Invalid token type: " .. typename)
+        if typename == "qutoken" then
+            return { val = nil, typename = "qutoken" }
+        elseif typename == "lbtoken" then
+            return { val = nil, typename = "lbtoken" }
+        elseif typename == "rbtoken" then
+            return { val = nil, typename = "rbtoken" }
+        elseif typename == "nltoken" then
+            return { val = nil, typename = "nltoken" }
+        elseif typename == "basetoken" then
+            return { val = nil, typename = "basetoken" }
+        else
+            error("Invalid token type: " .. typename)
+        end
     end
 end
 -- Function to get the type of a node
