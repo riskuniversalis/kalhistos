@@ -1,0 +1,2 @@
+--!strict
+-- lexer.luau - converts a string to tokens

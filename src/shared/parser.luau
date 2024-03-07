@@ -1,0 +1,2 @@
+--!strict
+-- parser.luau - parses a list of Tokens into a syntax tree
