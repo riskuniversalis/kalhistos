@@ -4,7 +4,7 @@ local tokens = require(script.Parent.tokens)
 type token = tokens.KalToken
 export type KalNodeImpl = {
     __index: KalNodeImpl,
-    new: (type: token, fileStart: number, fileEnd: number,
+    new: (type: token| nil, fileStart: number, fileEnd: number,
           fileLine: number, depth: number, parent: KalNodeType | nil) -> KalNodeType,
     addChild: (self: KalNodeType, child: KalNodeType) -> ()
 }
